@@ -1,31 +1,34 @@
 ﻿using System;
-using System.Net.Http;
-using System.Threading.Tasks;
+using System.Net;
+using System.Threading;
 
 namespace WatchlogMetric
 {
     public class WatchlogClient
     {
-        private static readonly HttpClient _client = new HttpClient();
         private const string AgentUrl = "http://localhost:3774";
 
         private void SendMetric(string method, string metric, double value = 1)
         {
             if (double.IsNaN(value)) return;
 
-            var uri = $"{AgentUrl}?method={method}&metric={Uri.EscapeDataString(metric)}&value={value}";
+            var uri = $"{AgentUrl}?method={Uri.EscapeDataString(method)}&metric={Uri.EscapeDataString(metric)}&value={value}";
 
-            Task.Run(async () =>
+            new Thread(() =>
             {
                 try
                 {
-                    await _client.GetAsync(uri);
+                    var request = (HttpWebRequest)WebRequest.Create(uri);
+                    request.Method = "GET";
+                    request.Timeout = 1000; // 1 second timeout
+
+                    using var response = request.GetResponse(); // Discard response
                 }
                 catch
                 {
-                    // Silent failure
+                    // Silently ignore all errors
                 }
-            });
+            }).Start();
         }
 
         public void Increment(string metric, double value = 1) => SendMetric("increment", metric, value);

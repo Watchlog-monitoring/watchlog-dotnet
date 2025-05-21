@@ -5,7 +5,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageId>Watchlog.Metric</PackageId>
-    <Version>0.1.1</Version>
+    <Version>0.1.2</Version>
     <Authors>Mohammad Najm</Authors>
     <Company>Watchlog</Company>
     <Description>Non-blocking metric logger client for Watchlog.</Description>
