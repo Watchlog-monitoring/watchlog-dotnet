@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageId>Watchlog.Metric</PackageId>
+    <Version>0.1.0</Version>
+    <Authors>Mohammad Najm</Authors>
+    <Company>Watchlog</Company>
+    <Description>Non-blocking metric logger client for Watchlog.</Description>
+    <PackageTags>metrics logging monitor watchlog</PackageTags>
+    <RepositoryUrl>https://github.com/watchlogserver/watchlog-dotnet</RepositoryUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+</Project>
