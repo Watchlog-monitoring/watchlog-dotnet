@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 using System.Threading;
 
@@ -6,7 +7,14 @@ namespace WatchlogMetric
 {
     public class WatchlogClient
     {
-        private const string AgentUrl = "http://localhost:3774";
+        private static readonly string AgentUrl = IsKubernetes()
+            ? "http://watchlog-node-agent:3774"
+            : "http://localhost:3774";
+
+        private static bool IsKubernetes()
+        {
+            return Directory.Exists("/var/run/secrets/kubernetes.io");
+        }
 
         private void SendMetric(string method, string metric, double value = 1)
         {
