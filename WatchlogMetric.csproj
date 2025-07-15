@@ -11,7 +11,7 @@
     <Company>Watchlog</Company>
     <Description>Non-blocking metric logger client for Watchlog.</Description>
     <PackageTags>metrics logging monitor watchlog</PackageTags>
-    <RepositoryUrl>https://github.com/watchlogserver/watchlog-dotnet</RepositoryUrl>
+    <RepositoryUrl>https://github.com/Watchlog-monitoring/watchlog-dotnet</RepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
