@@ -7,17 +7,23 @@ namespace WatchlogMetric
 {
     public class WatchlogClient
     {
-        private static readonly string AgentUrl;
+        private readonly string AgentUrl;
         private static readonly HttpClient HttpClient;
 
         static WatchlogClient()
         {
-            AgentUrl = DetermineServerUrl();
             HttpClient = new HttpClient
             {
                 Timeout = TimeSpan.FromSeconds(1)
                 // HttpClient reuses connections by default (keep-alive enabled)
             };
+        }
+
+        public WatchlogClient(string agentUrl = null)
+        {
+            // If user provided agent URL, use it directly (skip auto-detection)
+            // Otherwise, use auto-detection
+            AgentUrl = agentUrl ?? DetermineServerUrl();
         }
 
         private static bool IsRunningInK8s()
